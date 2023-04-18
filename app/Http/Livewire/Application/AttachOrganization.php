@@ -8,12 +8,14 @@ use App\Models\Organization;
 use Filament\Forms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Notifications\Notification;
 
 class AttachOrganization extends Component implements HasForms
 {
   use InteractsWithForms;
 
   public $application;
+  public $organizations;
 
   public $organization_id;
   public $detail;
@@ -46,13 +48,26 @@ class AttachOrganization extends Component implements HasForms
 
   public function create()
   {
-    $organization = $this->form->getState();
+    try {
+      $organization = $this->form->getState();
 
-    $this->application->organizations()->attach($organization['organization_id'], ['detail' => json_encode($organization['detail'])]);
+      $this->application->organizations()->attach($organization['organization_id'], ['detail' => json_encode($organization['detail'])]);
+      Notification::make()
+        ->success()
+        ->title('Sukses menambahkan organisasi ke aplikasi')
+        ->send();
+    } catch (\Exception $e) {
+      Notification::make()
+        ->title('Gagal')
+        ->body($e->getMessage())
+        ->danger()
+        ->send();
+    }
   }
 
   public function render()
   {
+    $this->organizations = $this->application->organizations;
     return view('livewire.application.attach-organization');
   }
 }

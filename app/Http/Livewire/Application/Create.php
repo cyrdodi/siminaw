@@ -113,8 +113,8 @@ class Create extends Component implements HasForms
   public function createAndAttach()
   {
     // dapatkan id aplk & web yang sudah diinput, untuk 
-    $this->submit();
-    return redirect()->route('application.index');
+    $id = $this->submit();
+    return redirect()->route('application.attachOrganization', ['application' => $id]);
   }
 
   protected function submit()
