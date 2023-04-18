@@ -13,9 +13,11 @@ use App\Models\Developer;
 use App\Models\Penggunaan;
 use App\Models\ServiceType;
 use App\Models\DataLocation;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Notifications\Notification;
 
 class Create extends Component implements HasForms
 {
@@ -102,11 +104,27 @@ class Create extends Component implements HasForms
     ];
   }
 
-  public function create(): void
+  public function create()
   {
-    $data = $this->form->getState();
-    $data['user_id'] = auth()->id();
-    Application::create($data);
+    try {
+      $data = $this->form->getState();
+      $data['user_id'] = auth()->id();
+      Application::create($data);
+
+      Notification::make()
+        ->title('Penyimpanan sukses')
+        ->body('Aplikasi & Web berhasil disimpan')
+        ->success()
+        ->send();
+
+      return redirect()->route('application.index');
+    } catch (\Exception $e) {
+      Notification::make()
+        ->title('Penyimpanan gagal')
+        ->body($e->getMessage())
+        ->danger()
+        ->send();
+    }
   }
 
 
