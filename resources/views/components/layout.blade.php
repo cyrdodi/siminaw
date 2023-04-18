@@ -35,7 +35,7 @@
                 </path>
               </svg>
             </button>
-            <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
+            <a href="#" class="flex ml-2 md:mr-24">
               <img src="{{ asset('images/logo.svg') }}" class="h-8 mr-3" alt="SIMINAW Logo" />
               <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"></span>
             </a>
@@ -121,7 +121,7 @@
               <span class="flex-1 ml-3 whitespace-nowrap">Aplikasi & Web</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
               <svg aria-hidden="true"
@@ -138,7 +138,7 @@
               <span
                 class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
             </a>
-          </li>
+          </li> --}}
           <li>
             <a href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -151,7 +151,7 @@
               <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="#"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
               <svg aria-hidden="true"
@@ -189,7 +189,7 @@
               </svg>
               <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </aside>
