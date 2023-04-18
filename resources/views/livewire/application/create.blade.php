@@ -2,10 +2,10 @@
   <x-card>
     <form wire:submit.prevent="create">
       {{ $this->form }}
-      <x-button-outline class="mt-6">
+      <x-button-outline type="submit" class="mt-6">
         Submit
       </x-button-outline>
-      <x-button class="mt-6">
+      <x-button type="button" class="mt-6" wire:click="createAndAttach">
         Submit & Tambahakan OPD
       </x-button>
     </form>

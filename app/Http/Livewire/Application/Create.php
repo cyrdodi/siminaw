@@ -106,10 +106,23 @@ class Create extends Component implements HasForms
 
   public function create()
   {
+    $this->submit();
+    return redirect()->route('application.index');
+  }
+
+  public function createAndAttach()
+  {
+    // dapatkan id aplk & web yang sudah diinput, untuk 
+    $this->submit();
+    return redirect()->route('application.index');
+  }
+
+  protected function submit()
+  {
     try {
       $data = $this->form->getState();
       $data['user_id'] = auth()->id();
-      Application::create($data);
+      $app = Application::create($data);
 
       Notification::make()
         ->title('Penyimpanan sukses')
@@ -117,7 +130,7 @@ class Create extends Component implements HasForms
         ->success()
         ->send();
 
-      return redirect()->route('application.index');
+      return $app->id;
     } catch (\Exception $e) {
       Notification::make()
         ->title('Penyimpanan gagal')

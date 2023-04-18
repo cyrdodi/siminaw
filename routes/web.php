@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
   Route::get('/application', [ApplicationController::class, 'index'])->name('application.index');
   Route::get('/application/create', [ApplicationController::class, 'create'])->name('application.create');
+  Route::get('/application/attach-ogranization/{application}', [ApplicationController::class, 'attachOrganization'])->name('application.attachOrganization');
 });
 
 require __DIR__ . '/auth.php';
