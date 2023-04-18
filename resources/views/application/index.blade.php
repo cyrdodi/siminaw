@@ -1,3 +1,3 @@
 <x-layout>
-  <p>This is application page </p>
+  <x-link href="{{ route('application.create') }}">Aplikasi & Web Baru</x-link>
 </x-layout>

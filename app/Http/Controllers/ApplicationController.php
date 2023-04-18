@@ -10,4 +10,9 @@ class ApplicationController extends Controller
   {
     return view('application/index');
   }
+
+  public function create()
+  {
+    return view('application/create');
+  }
 }

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
   Route::get('/application', [ApplicationController::class, 'index'])->name('application.index');
+  Route::get('/application/create', [ApplicationController::class, 'create'])->name('application.create');
 });
 
 require __DIR__ . '/auth.php';
