@@ -48,8 +48,8 @@ class AttachOrganization extends Component implements HasForms
 
   public function create()
   {
+    $organization = $this->form->getState();
     try {
-      $organization = $this->form->getState();
 
       $this->application->organizations()->attach($organization['organization_id'], ['detail' => json_encode($organization['detail'])]);
       Notification::make()

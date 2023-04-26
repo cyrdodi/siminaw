@@ -119,8 +119,8 @@ class Create extends Component implements HasForms
 
   protected function submit()
   {
+    $data = $this->form->getState();
     try {
-      $data = $this->form->getState();
       $data['user_id'] = auth()->id();
       $app = Application::create($data);
 
@@ -137,6 +137,7 @@ class Create extends Component implements HasForms
         ->body($e->getMessage())
         ->danger()
         ->send();
+      return;
     }
   }
 
