@@ -23,12 +23,12 @@ class Application extends Model
     return $this->belongsTo(Jenis::class);
   }
 
-  public function data_location()
+  public function dataLocation()
   {
     return $this->belongsTo(DataLocation::class);
   }
 
-  public function service_type()
+  public function serviceType()
   {
     return $this->belongsTo(ServiceType::class);
   }
@@ -43,7 +43,7 @@ class Application extends Model
     return $this->belongsTo(Vendor::class);
   }
 
-  public function dev_govt()
+  public function devGovt()
   {
     return $this->belongsTo(DevGovt::class);
   }
