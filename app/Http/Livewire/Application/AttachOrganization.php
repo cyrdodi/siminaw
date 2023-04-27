@@ -20,6 +20,9 @@ class AttachOrganization extends Component implements HasForms
   public $organization_id;
   public $detail;
 
+  // refresh component
+  protected $listeners = ['refreshComponent' => '$refresh'];
+
   public function mount(Application $application)
   {
     $this->application  = $application;
@@ -41,6 +44,7 @@ class AttachOrganization extends Component implements HasForms
           Forms\Components\TextInput::make('jabatan'),
           Forms\Components\TextInput::make('no_hp'),
         ])
+        ->defaultItems(1)
         ->required(),
 
     ];
@@ -56,6 +60,7 @@ class AttachOrganization extends Component implements HasForms
         ->success()
         ->title('Sukses menambahkan organisasi ke aplikasi')
         ->send();
+      $this->emit('refreshComponent');
     } catch (\Exception $e) {
       Notification::make()
         ->title('Gagal')
@@ -65,9 +70,18 @@ class AttachOrganization extends Component implements HasForms
     }
   }
 
+  public function delete($organizationId)
+  {
+
+    try {
+      $this->application->organizations()->detach($organizationId);
+      $this->emit('refreshComponent');
+    } catch (\Exception $e) {
+    }
+  }
+
   public function render()
   {
-    $this->organizations = $this->application->organizations;
     return view('livewire.application.attach-organization');
   }
 }

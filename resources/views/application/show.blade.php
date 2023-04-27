@@ -155,34 +155,37 @@
 
     <x-card>
       @forelse($application->organizations as $organization)
-      <div class="border rounded-xl p-4">
+      <div class="border rounded-xl p-4 mb-4">
         {{-- {{ dd($organization->name) }} --}}
         <x-heading.h5 class="text-blue-500">{{ $organization->name }}</x-heading.h5>
         <h3 class="text-gray-500 mt-2">{{ $organization->acronym }}</h3>
-        <hr />
-        <table class="w-full">
-          <tbody class="divide-y">
-            @foreach(json_decode($organization->pivot->detail) as $detail)
-            <tr>
-              <td class="py-2  text-gray-600 w-1/3">Nama</td>
-              <td class="py-2 ">{{ $detail->name }}</td>
-            </tr>
-            <tr>
-              <td class="py-2  text-gray-600">No. HP</td>
-              <td class="py-2 ">{{ $detail->no_hp }}</td>
-            </tr>
-            <tr>
-              <td class="py-2  text-gray-600">Jabatan</td>
-              <td class="py-2 ">{{ $detail->jabatan }}</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+        @foreach(json_decode($organization->pivot->detail) as $detail)
+        <div class="rounded-lg border-2  border-gray-200 text-gray-600 my-2 p-2 bg-gray-50 text-sm">
+          <table class="w-full ">
+            <tbody class="divide-y">
+              <tr>
+                <td class="py-2  text-gray-400 w-[120px]">Nama</td>
+                <td class="py-2 ">{{ $detail->name }}</td>
+              </tr>
+              <tr>
+                <td class="py-2  text-gray-400">No. HP</td>
+                <td class="py-2 ">{{ $detail->no_hp }}</td>
+              </tr>
+              <tr>
+                <td class="py-2  text-gray-400">Jabatan</td>
+                <td class="py-2 ">{{ $detail->jabatan }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        @endforeach
 
       </div>
       @empty
       <p>Tidak ada data</p>
       @endforelse
+
+      <x-link href="{{ route('application.attachOrganization', $application->id) }}">Tambah Organisasi</x-link>
     </x-card>
   </div>
 </x-layout>
