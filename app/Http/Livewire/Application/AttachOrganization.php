@@ -56,10 +56,13 @@ class AttachOrganization extends Component implements HasForms
     try {
 
       $this->application->organizations()->attach($organization['organization_id'], ['detail' => json_encode($organization['detail'])]);
+
       Notification::make()
         ->success()
         ->title('Sukses menambahkan organisasi ke aplikasi')
         ->send();
+      redirect()->route('application.attachOrganization', $this->application->id);
+      // $this->form->fill([]);
       $this->emit('refreshComponent');
     } catch (\Exception $e) {
       Notification::make()
