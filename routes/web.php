@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/application/show/{application}', [ApplicationController::class, 'show'])->name('application.show');
   Route::get('/application/show/{application}/attach-organization', [ApplicationController::class, 'showAttachOrganization'])->name('application.show.attachOrganization');
   Route::get('/application/show/{application}/attach-organization/{organization}/edit', [ApplicationController::class, 'showAttachOrganizationEdit'])->name('application.show.attachOrganization.edit');
+  Route::delete('/application/delete/{application}', [ApplicationController::class, 'delete'])->name('application.delete');
 
   Route::get('/application/edit/{application}', [ApplicationController::class, 'edit'])->name('application.edit');
 });
