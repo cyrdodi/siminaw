@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire\Application;
 
+use App\Models\Jenis;
+use Livewire\Component;
 use App\Models\Application;
+use App\Models\Organization;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Livewire\Component;
+use Filament\Tables\Concerns\InteractsWithTable;
 // use Filament
 
 class Table extends Component implements HasTable
@@ -20,14 +23,16 @@ class Table extends Component implements HasTable
 
   protected function getTableQuery(): Builder
   {
-    return Application::query();
+    return Application::where('is_active', true);
   }
 
   protected function getTableColumns(): array
   {
     return [
-      TextColumn::make('name'),
-      TextColumn::make('description'),
+      TextColumn::make('name')
+        ->searchable(),
+      TextColumn::make('description')
+        ->searchable(),
       TextColumn::make('penggunaan.name'),
       TextColumn::make('jenis.name'),
       TextColumn::make('serviceType.name'),
@@ -41,6 +46,28 @@ class Table extends Component implements HasTable
       Action::make('detail')
         ->url(fn (Application $record): string => route('application.show', $record->id)),
     ];
+  }
+
+  protected function getTableFilters(): array
+  {
+    return [
+      Filter::make('not_active')
+        ->query(fn (Builder $query): Builder => $query->where('is_active', false))
+        ->toggle()
+        ->label('Tidak Aktif'),
+      SelectFilter::make('jenis_id')
+        ->options(Jenis::all()->pluck('name', 'id'))
+        ->multiple(),
+      SelectFilter::make('organizations')
+        ->options(Organization::all()->pluck('name', 'id'))
+        ->attribute('organizations.organization_id')
+        ->searchable(),
+    ];
+  }
+
+  public function isTableSearchable(): bool
+  {
+    return true;
   }
 
   public function render()

@@ -100,6 +100,7 @@ class Create extends Component implements HasForms
         ->label('Online')
         ->required(),
       Forms\Components\Toggle::make('is_active')
+        ->default(true)
         ->required(),
     ];
   }
