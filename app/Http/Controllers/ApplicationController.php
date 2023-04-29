@@ -43,4 +43,9 @@ class ApplicationController extends Controller
   {
     return view('application.show-attach-organization-edit', compact('application', 'organization'));
   }
+
+  public function edit(Application $application)
+  {
+    return view('application.edit', compact('application'));
+  }
 }

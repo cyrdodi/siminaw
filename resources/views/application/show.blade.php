@@ -1,6 +1,11 @@
 <x-layout>
   <x-breadcrumb :homePage="['name' => 'Aplikasi & Web', 'route' => route('application.index')]" currentPage="Detail" />
-  <x-heading.h4 class="mb-4">Detail Aplikasi & Web</x-heading.h4>
+  <div class="flex justify-between items-center">
+
+    <x-heading.h4 class="mb-4">Detail Aplikasi & Web</x-heading.h4>
+
+    <x-link :href="route('application.edit', $application->id)">Edit</x-link>
+  </div>
 
   <div class="grid grid-cols-2 gap-4">
 
