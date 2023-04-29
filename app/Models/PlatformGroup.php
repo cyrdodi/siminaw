@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jenis extends Model
+class PlatformGroup extends Model
 {
   use HasFactory;
-  public $table = 'jenis';
+
+  protected $table = 'platform_group';
 }

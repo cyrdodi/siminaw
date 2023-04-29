@@ -15,31 +15,32 @@ return new class extends Migration
       $table->id();
       $table->string('name');
       $table->text('description');
-      $table->unsignedBigInteger('penggunaan_id');
-      $table->foreign('penggunaan_id')->references('id')->on('penggunaan');
-      $table->unsignedBigInteger('jenis_id');
-      $table->foreign('jenis_id')->references('id')->on('jenis');
+      $table->unsignedBigInteger('usage_id');
+      $table->unsignedBigInteger('platform_id');
       $table->json('technologies');
       $table->boolean('is_using_electronic_certificate')->nullable();
       $table->string('electronic_certificate_name')->nullable();
       $table->boolean('is_electronic_system_registered')->nullable();
       $table->unsignedBigInteger('data_location_id');
-      $table->foreign('data_location_id')->references('id')->on('data_locations');
       $table->boolean('is_integrated_with_central_govt')->nullable();
       $table->unsignedBigInteger('service_type_id');
-      $table->foreign('service_type_id')->references('id')->on('service_types');
       $table->string('url')->nullable();
       $table->unsignedBigInteger('developer_id');
-      $table->foreign('developer_id')->references('id')->on('developers');
       $table->unsignedBigInteger('vendor_id')->nullable();
-      $table->foreign('vendor_id')->references('id')->on('dev_govt');
       $table->unsignedBigInteger('dev_govt_id')->nullable();
-      $table->foreign('dev_govt_id')->references('id')->on('dev_govt');
       $table->boolean('is_online');
       $table->boolean('is_active');
       $table->unsignedBigInteger('user_id');
-      $table->foreign('user_id')->references('id')->on('users');
       $table->timestamps();
+
+      $table->foreign('usage_id')->references('id')->on('usage');
+      $table->foreign('platform_id')->references('id')->on('platforms');
+      $table->foreign('data_location_id')->references('id')->on('data_locations');
+      $table->foreign('service_type_id')->references('id')->on('service_types');
+      $table->foreign('developer_id')->references('id')->on('developers');
+      $table->foreign('vendor_id')->references('id')->on('vendors');
+      $table->foreign('dev_govt_id')->references('id')->on('dev_govt');
+      $table->foreign('user_id')->references('id')->on('users');
     });
   }
 

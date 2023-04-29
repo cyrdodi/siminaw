@@ -11,10 +11,9 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('penggunaan', function (Blueprint $table) {
+    Schema::create('platform_group', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->text('description');
       $table->timestamps();
     });
   }
@@ -24,6 +23,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('penggunaan');
+    Schema::dropIfExists('platform_group');
   }
 };

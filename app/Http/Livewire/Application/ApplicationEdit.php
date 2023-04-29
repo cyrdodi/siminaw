@@ -4,12 +4,12 @@ namespace App\Http\Livewire\Application;
 
 use Closure;
 use Filament\Forms;
-use App\Models\Jenis;
+use App\Models\Platform;
 use App\Models\Vendor;
 use App\Models\DevGovt;
 use Livewire\Component;
 use App\Models\Developer;
-use App\Models\Penggunaan;
+use App\Models\Usage;
 use App\Models\Application;
 use App\Models\ServiceType;
 use App\Models\DataLocation;
@@ -29,8 +29,8 @@ class ApplicationEdit extends Component implements HasForms
     $this->form->fill([
       'name' => $this->application->name,
       'description' => $this->application->description,
-      'penggunaan_id' => $this->application->penggunaan_id,
-      'jenis_id' => $this->application->jenis_id,
+      'usage_id' => $this->application->usage_id,
+      'platform_id' => $this->application->platform_id,
       'data_location_id' => $this->application->data_location_id,
       'service_type_id' => $this->application->service_type_id,
       'developer_id' => $this->application->developer_id,
@@ -58,14 +58,14 @@ class ApplicationEdit extends Component implements HasForms
         ->placeholder('Deskripsi/Fungsi aplikasi atau web')
         ->required()
         ->maxLength(65535),
-      Forms\Components\Select::make('penggunaan_id')
+      Forms\Components\Select::make('usage_id')
         ->label('Penggunaan')
-        ->options(Penggunaan::all()->pluck('name', 'id'))
+        ->options(Usage::all()->pluck('name', 'id'))
         ->required()
         ->helperText('Penggunaan aplikasi apakah umum digunakan/khusus'),
-      Forms\Components\Select::make('jenis_id')
-        ->label('Jenis')
-        ->options(Jenis::all()->pluck('name', 'id'))
+      Forms\Components\Select::make('platform_id')
+        ->label('Platform')
+        ->options(Platform::all()->pluck('name', 'id'))
         ->required(),
       Forms\Components\Select::make('data_location_id')
         ->label('Lokasi Data')

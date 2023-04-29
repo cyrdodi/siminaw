@@ -3,11 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Jenis;
+
+use App\Models\DataLocation;
+use App\Models\User;
+use App\Models\Usage;
+use App\Models\Vendor;
 use App\Models\DevGovt;
+use App\Models\Platform;
 use App\Models\Developer;
-use App\Models\Penggunaan;
 use App\Models\ServiceType;
+use App\Models\PlatformGroup;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +33,13 @@ class DatabaseSeeder extends Seeder
       OrganizationSeeder::class
     ]);
 
+    User::create([
+      'organization_id' => 1,
+      'name' => 'Cyrillus Dodi TY',
+      'email' => 'dodi.diskomsantik@gmail.com',
+      'password' => bcrypt('12345678'),
+    ]);
+
 
     Developer::create([
       'name' => 'In House'
@@ -42,32 +54,45 @@ class DatabaseSeeder extends Seeder
       'name' => 'Diskomsantik'
     ]);
 
-    Jenis::create([
-      'name' => 'Website Informasi',
-      'group' => '1'
+    PlatformGroup::create([
+      'id' => 1,
+      'name' => 'Website'
     ]);
-    Jenis::create([
-      'name' => 'Aplikasi Website',
-      'group' => '1'
+    PlatformGroup::create([
+      'id' => 2,
+      'name' => 'Desktop'
     ]);
-    Jenis::create([
-      'name' => 'Aplikasi Desktop',
-      'group' => '2'
-    ]);
-    Jenis::create([
-      'name' => 'Android',
-      'group' => '3'
-    ]);
-    Jenis::create([
-      'name' => 'iOS',
-      'group' => '3'
+    PlatformGroup::create([
+      'id' => 3,
+      'name' => 'Mobile'
     ]);
 
-    Penggunaan::create([
+    Platform::create([
+      'name' => 'Website Informasi',
+      'platform_group_id' => '1'
+    ]);
+    Platform::create([
+      'name' => 'Aplikasi Website',
+      'platform_group_id' => '1'
+    ]);
+    Platform::create([
+      'name' => 'Aplikasi Desktop',
+      'platform_group_id' => '2'
+    ]);
+    Platform::create([
+      'name' => 'Android',
+      'platform_group_id' => '3'
+    ]);
+    Platform::create([
+      'name' => 'iOS',
+      'platform_group_id' => '3'
+    ]);
+
+    Usage::create([
       'name' => 'Aplikasi Umum',
       'description' => 'Aplikasi yang umum digunakan OPD lain'
     ]);
-    Penggunaan::create([
+    Usage::create([
       'name' => 'Aplikasi Khusus',
       'description' => 'Aplikasi yang khusus digunakan di satu OPD'
     ]);
@@ -98,7 +123,23 @@ class DatabaseSeeder extends Seeder
     ]);
 
     DevGovt::create([
-      'name' => 'ANRI'
+      'name' => 'ANRI',
+    ]);
+    Vendor::create([
+      'name' => 'PT Maju Mundur',
+    ]);
+
+    DataLocation::create([
+      'name' => 'Diskomsantik'
+    ]);
+    DataLocation::create([
+      'name' => 'PDN Kominfo'
+    ]);
+    DataLocation::create([
+      'name' => 'Google Cloud Platform'
+    ]);
+    DataLocation::create([
+      'name' => 'AWS'
     ]);
   }
 }

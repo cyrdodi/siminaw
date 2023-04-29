@@ -21,11 +21,11 @@
         </tr>
         <tr>
           <td class="py-2 px-3 text-gray-600">Penggunaan</td>
-          <td class="py-2 px-3">{{ $application->penggunaan->name }}</td>
+          <td class="py-2 px-3">{{ $application->usage->name }}</td>
         </tr>
         <tr>
-          <td class="py-2 px-3 text-gray-600">Jenis</td>
-          <td class="py-2 px-3">{{ $application->jenis->name }}</td>
+          <td class="py-2 px-3 text-gray-600">Platform</td>
+          <td class="py-2 px-3">{{ $application->platform->name }}</td>
         </tr>
         <tr>
           <td class="py-2 px-3 text-gray-600">Teknologi</td>

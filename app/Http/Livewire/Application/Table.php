@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Application;
 
-use App\Models\Jenis;
+use App\Models\Platform;
 use Livewire\Component;
 use App\Models\Application;
 use App\Models\Organization;
@@ -33,8 +33,8 @@ class Table extends Component implements HasTable
         ->searchable(),
       TextColumn::make('description')
         ->searchable(),
-      TextColumn::make('penggunaan.name'),
-      TextColumn::make('jenis.name'),
+      TextColumn::make('usage.name'),
+      TextColumn::make('platform.name'),
       TextColumn::make('serviceType.name'),
       TagsColumn::make('technologies')
     ];
@@ -55,8 +55,8 @@ class Table extends Component implements HasTable
         ->query(fn (Builder $query): Builder => $query->where('is_active', false))
         ->toggle()
         ->label('Tidak Aktif'),
-      SelectFilter::make('jenis_id')
-        ->options(Jenis::all()->pluck('name', 'id'))
+      SelectFilter::make('platform_id')
+        ->options(Platform::all()->pluck('name', 'id'))
         ->multiple(),
       SelectFilter::make('organizations')
         ->options(Organization::all()->pluck('name', 'id'))

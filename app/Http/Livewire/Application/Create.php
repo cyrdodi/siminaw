@@ -5,12 +5,12 @@ namespace App\Http\Livewire\Application;
 use App\Models\Application;
 use Closure;
 use Filament\Forms;
-use App\Models\Jenis;
+use App\Models\Platform;
 use App\Models\Vendor;
 use App\Models\DevGovt;
 use Livewire\Component;
 use App\Models\Developer;
-use App\Models\Penggunaan;
+use App\Models\Usage;
 use App\Models\ServiceType;
 use App\Models\DataLocation;
 use Exception;
@@ -43,9 +43,9 @@ class Create extends Component implements HasForms
         ->placeholder('Deskripsi/Fungsi aplikasi atau web')
         ->required()
         ->maxLength(65535),
-      Forms\Components\Select::make('penggunaan_id')
+      Forms\Components\Select::make('usage_id')
         ->label('Penggunaan')
-        ->options(Penggunaan::all()->pluck('name', 'id'))
+        ->options(Usage::all()->pluck('name', 'id'))
         ->required()
         ->helperText('Penggunaan aplikasi apakah umum digunakan/khusus'),
       Forms\Components\Select::make('developer_id')
@@ -63,9 +63,9 @@ class Create extends Component implements HasForms
         ->options(DevGovt::all()->pluck('name', 'id'))
         ->searchable()
         ->visible(fn (Closure $get) => $get('developer_id') == '3'),
-      Forms\Components\Select::make('jenis_id')
-        ->label('Jenis')
-        ->options(Jenis::all()->pluck('name', 'id'))
+      Forms\Components\Select::make('platform_id')
+        ->label('Platform')
+        ->options(Platform::all()->pluck('name', 'id'))
         ->required(),
       Forms\Components\Select::make('data_location_id')
         ->label('Lokasi Data')

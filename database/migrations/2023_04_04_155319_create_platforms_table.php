@@ -11,15 +11,13 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('vendors', function (Blueprint $table) {
+    Schema::create('platforms', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->text('address')->nullable();
-      $table->string('website')->nullable();
-      $table->json('contacts')->nullable();
-      $table->string('details')->nullable();
+      $table->unsignedBigInteger('platform_group_id');
       $table->timestamps();
-      $table->softDeletes();
+
+      $table->foreign('platform_group_id')->references('id')->on('platform_group');
     });
   }
 
@@ -28,6 +26,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('vendors');
+    Schema::dropIfExists('platforms');
   }
 };

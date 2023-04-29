@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Platform;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,16 +12,16 @@ class Application extends Model
   use HasFactory;
   protected $casts = ['technologies' => 'array', 'organizations.contacts' => 'array'];
 
-  protected $fillable = ['name', 'description', 'penggunaan_id', 'jenis_id', 'technologies', 'is_using_electronic_certificate', 'electronic_certificate_name', 'is_electronic_system_registered', 'data_location_id', 'is_integrated_with_central_govt', 'service_type_id', 'url', 'developer_id', 'vendor_id', 'dev_govt_id', 'is_online', 'is_active', 'user_id', 'options->enabled'];
+  protected $fillable = ['name', 'description', 'usage_id', 'platform_id', 'technologies', 'is_using_electronic_certificate', 'electronic_certificate_name', 'is_electronic_system_registered', 'data_location_id', 'is_integrated_with_central_govt', 'service_type_id', 'url', 'developer_id', 'vendor_id', 'dev_govt_id', 'is_online', 'is_active', 'user_id', 'options->enabled'];
 
-  public function penggunaan()
+  public function usage()
   {
-    return $this->belongsTo(Penggunaan::class);
+    return $this->belongsTo(Usage::class);
   }
 
-  public function jenis()
+  public function platform()
   {
-    return $this->belongsTo(Jenis::class);
+    return $this->belongsTo(Platform::class);
   }
 
   public function dataLocation()
