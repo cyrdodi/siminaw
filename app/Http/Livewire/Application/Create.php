@@ -48,18 +48,6 @@ class Create extends Component implements HasForms
         ->options(Penggunaan::all()->pluck('name', 'id'))
         ->required()
         ->helperText('Penggunaan aplikasi apakah umum digunakan/khusus'),
-      Forms\Components\Select::make('jenis_id')
-        ->label('Jenis')
-        ->options(Jenis::all()->pluck('name', 'id'))
-        ->required(),
-      Forms\Components\Select::make('data_location_id')
-        ->label('Lokasi Data')
-        ->options(DataLocation::all()->pluck('name', 'id'))
-        ->required(),
-      Forms\Components\Select::make('service_type_id')
-        ->label('Layanan')
-        ->options(ServiceType::all()->pluck('name', 'id'))
-        ->required(),
       Forms\Components\Select::make('developer_id')
         ->label('Pengembang')
         ->options(Developer::all()->pluck('name', 'id'))
@@ -75,6 +63,18 @@ class Create extends Component implements HasForms
         ->options(DevGovt::all()->pluck('name', 'id'))
         ->searchable()
         ->visible(fn (Closure $get) => $get('developer_id') == '3'),
+      Forms\Components\Select::make('jenis_id')
+        ->label('Jenis')
+        ->options(Jenis::all()->pluck('name', 'id'))
+        ->required(),
+      Forms\Components\Select::make('data_location_id')
+        ->label('Lokasi Data')
+        ->options(DataLocation::all()->pluck('name', 'id'))
+        ->required(),
+      Forms\Components\Select::make('service_type_id')
+        ->label('Layanan')
+        ->options(ServiceType::all()->pluck('name', 'id'))
+        ->required(),
       // Forms\Components\TextInput::make('user_id')
       //   ->required(),modelmodel
       Forms\Components\TagsInput::make('technologies')

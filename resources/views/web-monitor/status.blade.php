@@ -1,0 +1,4 @@
+<div>
+  {{ $getState() }}
+  Kejo
+</div>
