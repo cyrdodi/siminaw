@@ -19,7 +19,7 @@ class AttachOrganization extends Component implements HasForms
   public $organizations;
 
   public $organization_id;
-  public $detail;
+  public $contacts;
 
   public $currentRoute;
 
@@ -53,7 +53,7 @@ class AttachOrganization extends Component implements HasForms
         ->searchable()
         ->required()
         ->label('Organisasi Perangkat Daerah'),
-      Forms\Components\Repeater::make('detail')
+      Forms\Components\Repeater::make('contacts')
         ->schema([
           Forms\Components\TextInput::make('name')
             ->label('Nama Person in Charge (PIC)')
@@ -64,7 +64,7 @@ class AttachOrganization extends Component implements HasForms
         ->defaultItems(1)
         ->minItems(1)
         ->required()
-        ->createItemButtonLabel('Tambah Detail PIC'),
+        ->createItemButtonLabel('Tambah Kontak PIC'),
 
     ];
   }
@@ -74,7 +74,7 @@ class AttachOrganization extends Component implements HasForms
     $organization = $this->form->getState();
     try {
 
-      $this->application->organizations()->attach($organization['organization_id'], ['detail' => json_encode($organization['detail'])]);
+      $this->application->organizations()->attach($organization['organization_id'], ['contacts' => json_encode($organization['contacts'])]);
 
       Notification::make()
         ->success()

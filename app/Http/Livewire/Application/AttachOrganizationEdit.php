@@ -25,21 +25,21 @@ class AttachOrganizationEdit extends Component implements HasForms
   {
     $this->currentRoute = request()->route()->getName();
 
-    $detail = $this->application->organizations()->wherePivot('organization_id', $this->organization->id)->first()->pivot;
+    $contacts = $this->application->organizations()->wherePivot('organization_id', $this->organization->id)->first()->pivot;
 
     // dd(json_encode($detail->detail));
 
-    $details = json_decode($detail->detail, true);
+    $contacts = json_decode($contacts->contacts, true);
 
     $this->form->fill([
-      'detail' => $details
+      'contacts' => $contacts
     ]);
   }
 
   protected function getFormSchema(): array
   {
     return [
-      Forms\Components\Repeater::make('detail')
+      Forms\Components\Repeater::make('contacts')
         ->schema([
           Forms\Components\TextInput::make('name')
             ->label('Nama Person in Charge (PIC)')
@@ -55,7 +55,7 @@ class AttachOrganizationEdit extends Component implements HasForms
     $data = $this->form->getState();
 
     try {
-      $this->application->organizations()->sync([$this->organization->id =>  ['detail' => json_encode($data['detail'])]]);
+      $this->application->organizations()->sync([$this->organization->id =>  ['contacts' => json_encode($data['contacts'])]]);
       Notification::make()
         ->title('Update berhasil')
         ->success()

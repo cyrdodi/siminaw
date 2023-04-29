@@ -22,20 +22,20 @@
               class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Delete</button>
           </div>
         </div>
-        @foreach(json_decode($organization->pivot->detail) as $detail)
+        @foreach(json_decode($organization->pivot->contacts) as $contacts)
         <div class="border rounded-lg p-2 mb-2">
           <table>
             <tr>
               <td class="w-[158px]">Name</td>
-              <td>{{ $detail->name }}</td>
+              <td>{{ $contacts->name }}</td>
             </tr>
             <tr>
               <td>Jabatan</td>
-              <td>{{ $detail->jabatan }}</td>
+              <td>{{ $contacts->jabatan }}</td>
             </tr>
             <tr>
               <td>No. Handphone</td>
-              <td>{{ $detail->no_hp }}</td>
+              <td>{{ $contacts->no_hp }}</td>
             </tr>
           </table>
 

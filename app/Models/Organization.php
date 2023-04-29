@@ -11,7 +11,7 @@ class Organization extends Model
 {
   use HasFactory, SoftDeletes;
 
-  protected $casts = ['pivot.detail' => 'array'];
+  protected $casts = ['pivot.contacts' => 'array'];
 
   protected $fillable = [
     'name',
@@ -21,6 +21,6 @@ class Organization extends Model
 
   public function applications(): BelongsToMany
   {
-    return $this->belongsToMany(Application::class)->withPivot('detail');
+    return $this->belongsToMany(Application::class)->withPivot('contacts');
   }
 }

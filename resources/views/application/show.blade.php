@@ -171,21 +171,21 @@
         {{-- {{ dd($organization->name) }} --}}
         <x-heading.h5 class="text-blue-500">{{ $organization->name }}</x-heading.h5>
         <h3 class="text-gray-500 mt-2">{{ $organization->acronym }}</h3>
-        @foreach(json_decode($organization->pivot->detail) as $detail)
+        @foreach(json_decode($organization->pivot->contacts) as $contacts)
         <div class="rounded-lg border-2  border-gray-200 text-gray-600 my-2 p-2 bg-gray-50 text-sm">
           <table class="w-full ">
             <tbody class="divide-y">
               <tr>
                 <td class="py-2  text-gray-400 w-[120px]">Nama</td>
-                <td class="py-2 ">{{ $detail->name }}</td>
+                <td class="py-2 ">{{ $contacts->name }}</td>
               </tr>
               <tr>
                 <td class="py-2  text-gray-400">No. HP</td>
-                <td class="py-2 ">{{ $detail->no_hp }}</td>
+                <td class="py-2 ">{{ $contacts->no_hp }}</td>
               </tr>
               <tr>
                 <td class="py-2  text-gray-400">Jabatan</td>
-                <td class="py-2 ">{{ $detail->jabatan }}</td>
+                <td class="py-2 ">{{ $contacts->jabatan }}</td>
               </tr>
             </tbody>
           </table>

@@ -43,7 +43,7 @@ class Table extends Component implements HasTable
   protected function getTableActions(): array
   {
     return [
-      Action::make('detail')
+      Action::make('Detail')
         ->url(fn (Application $record): string => route('application.show', $record->id)),
     ];
   }

@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('application_organization', function (Blueprint $table) {
       $table->foreignId('application_id')->constrained();
       $table->foreignId('organization_id')->constrained();
-      $table->json('detail')->nullable();
+      $table->json('contacts')->nullable();
     });
   }
 

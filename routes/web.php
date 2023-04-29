@@ -50,7 +50,9 @@ Route::middleware('auth')->group(function () {
   // master data
   Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
   Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organization.create');
+
   Route::get('/vendor', [VendorController::class, 'index'])->name('vendor');
+
   Route::get('/dev-govt', [DevGovtController::class, 'index'])->name('devGovt');
 });
 
