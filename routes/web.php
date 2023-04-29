@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\DevGovtController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\WebMonitorController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\OrganizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +46,12 @@ Route::middleware('auth')->group(function () {
   Route::get('/application/edit/{application}', [ApplicationController::class, 'edit'])->name('application.edit');
 
   Route::get('/web-monitor', [WebMonitorController::class, 'index'])->name('webMonitor');
+
+  // master data
+  Route::get('/organization', [OrganizationController::class, 'index'])->name('organization');
+  Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organization.create');
+  Route::get('/vendor', [VendorController::class, 'index'])->name('vendor');
+  Route::get('/dev-govt', [DevGovtController::class, 'index'])->name('devGovt');
 });
 
 require __DIR__ . '/auth.php';
