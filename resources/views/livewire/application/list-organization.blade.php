@@ -14,7 +14,9 @@
           <h3 class="font-semibold text-lg ">{{ $organization->name }}</h3>
 
           <div>
-            <x-link :href="route('application.attachOrganization.edit', [$application, $organization])">Edit
+            <x-link
+              :href="request()->routeIs('*show*') ? route('application.show.attachOrganization.edit', [$application, $organization]) : route('application.attachOrganization.edit', [$application, $organization])">
+              Edit
             </x-link>
             <button wire:click="delete({{ $organization->id }})"
               class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Delete</button>

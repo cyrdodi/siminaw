@@ -9,8 +9,8 @@
   {{-- table --}}
   <x-heading.h6 class="mt-8 mb-2">5 Tech Stack Terbanyak</x-heading.h6>
   <div class="relative overflow-x-auto shadow-md sm:rounded-2xl w-1/4">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 ">
+      {{-- <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" class="px-6 py-3">
             Tech Stack
@@ -19,14 +19,14 @@
             Jumlah
           </th>
         </tr>
-      </thead>
+      </thead> --}}
       <tbody>
         @foreach($listTechnology as $tech)
-        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <tr class="bg-white border-b ">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
             {{ $tech->technology }}
           </th>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 text-gray-900 text-center">
             {{ $tech->count }}
           </td>
         </tr>

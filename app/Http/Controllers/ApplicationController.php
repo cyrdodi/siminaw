@@ -11,26 +11,36 @@ class ApplicationController extends Controller
 {
   public function index()
   {
-    return view('application/index');
+    return view('application.index');
   }
 
   public function create()
   {
-    return view('application/create');
+    return view('application.create');
   }
 
   public function attachOrganization(Application $application)
   {
-    return view('application/attach-organization', compact('application'));
+    return view('application.attach-organization', compact('application'));
   }
 
   public function attachOrganizationEdit(Application $application, Organization $organization)
   {
-    return view('application/attach-organization-edit', compact('application', 'organization'));
+    return view('application.attach-organization-edit', compact('application', 'organization'));
   }
 
   public function show(Application $application)
   {
-    return view('application/show', compact('application'));
+    return view('application.show', compact('application'));
+  }
+
+  public function showAttachOrganization(Application $application)
+  {
+    return view('application.show-attach-organization', compact('application'));
+  }
+
+  public function showAttachOrganizationEdit(Application $application, Organization $organization)
+  {
+    return view('application.show-attach-organization-edit', compact('application', 'organization'));
   }
 }

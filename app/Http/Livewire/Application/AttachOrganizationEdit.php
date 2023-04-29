@@ -9,18 +9,22 @@ use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Filament\Forms;
 use Filament\Notifications\Notification;
+use Illuminate\Routing\Route;
 
 class AttachOrganizationEdit extends Component implements HasForms
 {
   use InteractsWithForms;
 
   public Application $application;
-  public  Organization $organization;
+  public Organization $organization;
+  public $currentRoute;
 
   public $organizationId;
 
   public function mount()
   {
+    $this->currentRoute = request()->route()->getName();
+
     $detail = $this->application->organizations()->wherePivot('organization_id', $this->organization->id)->first()->pivot;
 
     // dd(json_encode($detail->detail));
@@ -48,9 +52,7 @@ class AttachOrganizationEdit extends Component implements HasForms
 
   public function update()
   {
-
     $data = $this->form->getState();
-    // dd($data['detail']);
 
     try {
       $this->application->organizations()->sync([$this->organization->id =>  ['detail' => json_encode($data['detail'])]]);
@@ -58,11 +60,16 @@ class AttachOrganizationEdit extends Component implements HasForms
         ->title('Update berhasil')
         ->success()
         ->send();
-      return redirect()->route('application.attachOrganization', $this->application->id);
+      $route = strpos($this->currentRoute, 'show')  ?
+        redirect()->route('application.show.attachOrganization', $this->application->id) :
+        redirect()->route('application.attachOrganization', $this->application->id);
+
+      // dd(request()->routeIs('application.show.attachOrganization.edit'));
+      return $route;
     } catch (\Exception $e) {
       Notification::make()
         ->title('Update Gagal')
-        ->content($e->getMessage())
+        ->body($e->getMessage())
         ->danger()
         ->send();
     }

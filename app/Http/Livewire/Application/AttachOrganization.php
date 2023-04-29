@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Application;
 
+use Filament\Forms;
 use Livewire\Component;
 use App\Models\Application;
 use App\Models\Organization;
-use Filament\Forms;
+use Illuminate\Support\Facades\DB;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 class AttachOrganization extends Component implements HasForms
 {
@@ -20,19 +21,35 @@ class AttachOrganization extends Component implements HasForms
   public $organization_id;
   public $detail;
 
+  public $currentRoute;
+
   // refresh component
   protected $listeners = ['refreshComponent' => '$refresh'];
 
   public function mount(Application $application)
   {
+    $this->currentRoute = request()->route()->getName();
     $this->application  = $application;
+    $this->form->fill();
   }
 
   protected  function getFormSchema(): array
   {
     return [
       Forms\Components\Select::make('organization_id')
-        ->options(Organization::all()->pluck('name', 'id'))
+        // ->options(Organization::all()->pluck('name', 'id'))
+        ->options(function () {
+          $existingOrganizations = DB::table('application_organization')
+            ->select('organization_id')
+            ->where('application_id', $this->application->id)
+            ->distinct()
+            ->pluck('organization_id')
+            ->toArray();
+
+          $organizations = Organization::whereNotIn('id', $existingOrganizations)
+            ->pluck('name', 'id');
+          return $organizations;
+        })
         ->searchable()
         ->required()
         ->label('Organisasi Perangkat Daerah'),
@@ -45,7 +62,9 @@ class AttachOrganization extends Component implements HasForms
           Forms\Components\TextInput::make('no_hp'),
         ])
         ->defaultItems(1)
-        ->required(),
+        ->minItems(1)
+        ->required()
+        ->createItemButtonLabel('Tambah Detail PIC'),
 
     ];
   }
@@ -61,7 +80,8 @@ class AttachOrganization extends Component implements HasForms
         ->success()
         ->title('Sukses menambahkan organisasi ke aplikasi')
         ->send();
-      redirect()->route('application.attachOrganization', $this->application->id);
+
+      redirect()->route($this->currentRoute, $this->application->id);
       // $this->form->fill([]);
       $this->emit('refreshComponent');
     } catch (\Exception $e) {

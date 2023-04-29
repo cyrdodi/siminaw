@@ -1,4 +1,7 @@
 <x-layout>
+  <x-breadcrumb :homePage="['name' => 'Aplikasi & Web', 'route' => route('application.index')]" currentPage="Detail" />
+  <x-heading.h4 class="mb-4">Detail Aplikasi & Web</x-heading.h4>
+
   <div class="grid grid-cols-2 gap-4">
 
     <x-card>
@@ -185,7 +188,7 @@
       <p>Tidak ada data</p>
       @endforelse
 
-      <x-link href="{{ route('application.attachOrganization', $application->id) }}">Tambah Organisasi</x-link>
+      <x-link href="{{ route('application.show.attachOrganization', $application->id) }}">Tambah Organisasi</x-link>
     </x-card>
   </div>
 </x-layout>
