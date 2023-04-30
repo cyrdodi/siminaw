@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organization.create');
 
   Route::get('/vendor', [VendorController::class, 'index'])->name('vendor');
+  Route::get('/vendor/create', [VendorController::class, 'create'])->name('vendor.create');
 
   Route::get('/dev-govt', [DevGovtController::class, 'index'])->name('devGovt');
 });

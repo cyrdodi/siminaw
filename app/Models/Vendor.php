@@ -13,4 +13,8 @@ class Vendor extends Model
     SoftDeletes;
 
   protected $guarded = [];
+
+  protected $casts = [
+    'contacts' => 'array'
+  ];
 }

@@ -124,9 +124,11 @@ class DatabaseSeeder extends Seeder
 
     DevGovt::create([
       'name' => 'ANRI',
+      'contacts' => []
     ]);
     Vendor::create([
       'name' => 'PT Maju Mundur',
+      'contacts' => []
     ]);
 
     DataLocation::create([
