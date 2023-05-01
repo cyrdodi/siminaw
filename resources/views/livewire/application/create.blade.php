@@ -1,5 +1,5 @@
 <div>
-  <x-card>
+  <x-card class="w-1/2">
     <form wire:submit.prevent="create">
       {{ $this->form }}
       <x-button-outline type="submit" class="mt-6">

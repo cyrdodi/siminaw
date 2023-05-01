@@ -2,22 +2,21 @@
 
 namespace App\Http\Livewire\Application;
 
-use App\Models\Application;
 use Closure;
 use Filament\Forms;
-use App\Models\Platform;
+use App\Models\Usage;
 use App\Models\Vendor;
 use App\Models\DevGovt;
 use Livewire\Component;
+use App\Models\Platform;
 use App\Models\Developer;
-use App\Models\Usage;
+use App\Models\Application;
 use App\Models\ServiceType;
 use App\Models\DataLocation;
-use Exception;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 class Create extends Component implements HasForms
 {
@@ -63,6 +62,7 @@ class Create extends Component implements HasForms
         ->options(DevGovt::all()->pluck('name', 'id'))
         ->searchable()
         ->visible(fn (Closure $get) => $get('developer_id') == '3'),
+
       Forms\Components\Select::make('platform_id')
         ->label('Platform')
         ->options(Platform::all()->pluck('name', 'id'))
@@ -81,6 +81,7 @@ class Create extends Component implements HasForms
         ->label('Teknologi')
         ->helperText('Tech Stack yang digunakan')
         ->required(),
+
       Forms\Components\TextInput::make('url')
         ->url()
         ->maxLength(255),
