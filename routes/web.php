@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/vendor/create', [VendorController::class, 'create'])->name('vendor.create');
 
   Route::get('/dev-govt', [DevGovtController::class, 'index'])->name('devGovt');
+  Route::get('/dev-govt/create', [DevGovtController::class, 'create'])->name('devGovt.create');
 });
 
 require __DIR__ . '/auth.php';

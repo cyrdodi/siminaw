@@ -179,9 +179,9 @@
             </a>
           </li>
           <li>
-            <a href="#"
+            <a href="{{ route('devGovt') }}"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <span class="flex-1 ml-3 whitespace-nowrap">Pengembang Pusat</span>
+              <span class="flex-1 ml-3 whitespace-nowrap">Pengembang Pusat/K/L</span>
             </a>
           </li>
           {{-- <li>

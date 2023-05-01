@@ -1,5 +1,5 @@
 <x-layout>
-  <x-breadcrumb :homePage="['name' => 'Organisasi', 'route' => route('organization')]" />
+  <x-breadcrumb :homePage="['name' => 'Vendor', 'route' => route('vendor')]" />
 
   <div class="flex mb-4 items-center justify-between">
     <x-heading.h4>Vendor</x-heading.h4>
