@@ -35,7 +35,7 @@
                 </path>
               </svg>
             </button>
-            <a href="#" class="flex ml-2 md:mr-24">
+            <a href="/" class="flex ml-2 md:mr-24">
               <img src="{{ asset('images/logo.svg') }}" class="h-8 mr-3" alt="SIMINAW Logo" />
               <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"></span>
             </a>
@@ -44,11 +44,14 @@
             <div class="flex items-center ml-3">
               <div>
                 <button type="button"
-                  class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                  class="flex text-sm bg-white rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                   aria-expanded="false" data-dropdown-toggle="dropdown-user">
                   <span class="sr-only">Open user menu</span>
-                  <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    alt="user photo">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
                 </button>
               </div>
               <div
@@ -56,32 +59,28 @@
                 id="dropdown-user">
                 <div class="px-4 py-3" role="none">
                   <p class="text-sm text-gray-900 dark:text-white" role="none">
-                    Neil Sims
+                    {{ auth()->user()->name }}
                   </p>
                   <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                    neil.sims@flowbite.com
+                    {{ auth()->user()->email }}
                   </p>
                 </div>
                 <ul class="py-1" role="none">
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem">Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="#"
+                    <a href="{{ route('profile.edit') }}"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem">Settings</a>
                   </li>
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem">Earnings</a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem">Sign out</a>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                                      this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                      </x-dropdown-link>
+                    </form>
+
                   </li>
                 </ul>
               </div>
@@ -154,7 +153,7 @@
           </li> --}}
 
           <li>
-            <a href="#"
+            <a href="{{ route('profile.edit') }}"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
               <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -162,7 +161,7 @@
                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
                 </path>
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
+              <span class="flex-1 ml-3 whitespace-nowrap">Profil</span>
             </a>
           </li>
           <li class="text-gray-400">Master Data</li>
