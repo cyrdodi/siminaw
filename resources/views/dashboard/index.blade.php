@@ -7,9 +7,9 @@
   </div>
 
   {{-- table --}}
-  <x-heading.h6 class="mt-8 mb-2">5 Tech Stack Terbanyak</x-heading.h6>
+  {{-- <x-heading.h6 class="mt-8 mb-2">5 Tech Stack Terbanyak</x-heading.h6>
   <div class="relative overflow-x-auto shadow-md sm:rounded-2xl w-1/4">
-    <table class="w-full text-sm text-left text-gray-500 ">
+    <table class="w-full text-sm text-left text-gray-500 "> --}}
       {{-- <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" class="px-6 py-3">
@@ -20,7 +20,7 @@
           </th>
         </tr>
       </thead> --}}
-      <tbody>
+      {{-- <tbody>
         @foreach($listTechnology as $tech)
         <tr class="bg-white border-b ">
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -34,5 +34,5 @@
 
       </tbody>
     </table>
-  </div>
+  </div> --}}
 </x-layout>
