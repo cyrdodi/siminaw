@@ -1,4 +1,4 @@
-<div class="w-1/3">
+<div class="xl:w-1/3">
   {{-- info and form --}}
   <div>
     <x-card>

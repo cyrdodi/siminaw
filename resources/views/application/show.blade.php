@@ -7,7 +7,7 @@
     <x-link :href="route('application.edit', $application->id)">Edit</x-link>
   </div>
 
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid xl:grid-cols-2 gap-4">
 
     <x-card>
       <table>
